@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Hello World!! </title>
+<title>Hello DevOps </title>
 </head>
 <body>
 	<h1>CI/CD Option!</h1>
