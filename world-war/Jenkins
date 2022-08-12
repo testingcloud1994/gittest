@@ -4,18 +4,20 @@ pipeline {
     stages {
         stage('Init') {
             steps {
-                echo 'This is Devops project'
-                echo 'This will continue to develop'
+                echo 'Building package now ..'
+                sh 'mvn -f world-war/pom.xml clean package'
             }
         }
         stage('Build') {
             steps {
-                echo 'Building project and its artifacts '
+                echo 'fetching its artifacts..'
+                archiveArtifacts artifacts:  '**/*.war'
             }
         }
         stage('Test') {
             steps {
                 echo 'Deploying in testing enviromet ..'
+                Build Job: 'tomcat_staging_Env'
             }
         }
         stage('Prod') {
