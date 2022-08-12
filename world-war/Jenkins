@@ -17,7 +17,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Deploying in testing enviromet ..'
-                :Job: 'tomcat_staging_Env'
+                Job: 'tomcat_staging_Env'
             }
         }
         stage('Prod') {
