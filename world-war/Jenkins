@@ -2,19 +2,25 @@ pipeline {
     agent any
 
     stages {
+        stage('Init') {
+            steps {
+                echo 'This is Devops project'
+                echo 'This will continue to develop'
+            }
+        }
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'Building project and its artifacts '
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                echo 'Deploying in testing enviromet ..'
             }
         }
-        stage('Deploy') {
+        stage('Prod') {
             steps {
-                echo 'Deploying....'
+                echo 'Deploying in production enviroment ..'
             }
         }
     }
