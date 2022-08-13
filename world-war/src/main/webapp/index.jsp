@@ -1,9 +1,9 @@
 <html>
 <head>
-<title>Hello DevOps </title>
+<title>HEllo Java  </title>
 </head>
 <body>
-	<h1>CI/CD Option!</h1>
+	<h1>Pipeline Deployment OF job </h1>
 	<p>
 		It is now
 		<%= new java.util.Date() %></p>
