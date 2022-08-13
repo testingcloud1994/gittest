@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Prod') {
             steps {
-                input: "Is it working fine .?"
+                input: 'Is it working fine .?'
                 echo 'Deploying in production enviroment ..'
             }
         }
