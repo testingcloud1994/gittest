@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: mytestjenkins
+    namespace: jenkinstest
+    labels:
+        appname: testdata
+spec:
+    replicas: 3
+    selector:
+       matchLabels:
+            appname: testdata
+    template:
+       metadata:
+         labels:
+            appname: testdata
+    spec:
+      containers:
+         -name: testdata
+         image: nginx
+         ports:
+         -containerPort: 80
+      
