@@ -1,17 +1,14 @@
 resource "google_compute_instance" "vm_instance" {
-    count = 1
     name = "${var.vmname}"
     machine_type = "e2-micro"
-    
-    
-    
+       
     boot_disk {
       initialize_params{
         image= "ubuntu-os-cloud/ubuntu-2004-lts"
       }
           }
     metadata = {
-      "key" = "file(${var.pathtopublickey})"
+      "key" = file("${var.pathtopublickey}")
     }
     metadata_startup_script ="apt-get update && apt-get install nginx"
         
