@@ -5,7 +5,7 @@ variable "vmname" {
      type = string
      description = "this is conditional exception"
      validation {
-       condition = contains(["a","b"].lower(var.vmname))
+       condition = contains(["a","b"],lower(var.vmname))
        error_message = "only allowed name is a or b . please insert allowed values "   
      }
     }
