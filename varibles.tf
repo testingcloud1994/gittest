@@ -6,5 +6,5 @@ variable "myzone" {
 }
 variable "securitygp" {
     type = list
-    name=["a","b","c","d","e","f","g","h"]  
+    default=["a","b","c","d","e","f","g","h"]  
 }
