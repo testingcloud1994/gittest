@@ -10,7 +10,7 @@ resource "google_compute_instance" "vm_instance" {
     metadata = {
       enable-oslogin = "TRUE"
     }
-    metadata_startup_script ="apt-get update && apt-get install nginx"
+    metadata_startup_script ="sudo apt-get update && sudo apt-get install nginx "
         
     network_interface {
       network= "default"
