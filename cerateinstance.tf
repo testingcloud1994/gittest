@@ -1,7 +1,7 @@
 provider "google" {
     project = "intense-acumen-357607"
     region = "us-central1"
-    zone = "us-central1-c"
+    
 }
 
 resource "google_compute_instance" "vm_instance" {
