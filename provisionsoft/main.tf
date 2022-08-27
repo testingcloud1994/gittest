@@ -15,7 +15,7 @@ resource "google_compute_instance" "vm_instance" {
     network_interface {
       network= "default"
       access_config {
-      nat_ip="${var.securitygp[0]}"
+      
                   }
     }
 }
