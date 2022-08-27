@@ -1,3 +1,9 @@
+resource "google_compute_project_metadata_item" "keyvalue" {
+  metadata={
+      ssh-keys= file("${var.keyvalue.publickey}")
+  }
+  }
+
 resource "google_compute_instance" "vm_instance" {
     count = 1
     name = "${var.vmname}"
@@ -12,7 +18,6 @@ network_interface {
     network= "default"
     access_config {
      nat_ip="${var.securitygp[0]}"
-                  }
-}
+                  }}
   
 }
