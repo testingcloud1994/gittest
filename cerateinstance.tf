@@ -13,15 +13,10 @@ resource "google_compute_instance" "vm_instance" {
       }
       }
 network_interface {
-    name= "mytestnetwork"
+    network= "mytestnetwork"
     access_config {
-      
-    }
-  
-
+          
+          }
 }
-
-
-
   
 }
