@@ -1,6 +1,6 @@
 resource "google_compute_instance" "vm_instance" {
     count = 3
-    name = "myinstance"
+    name = "myinstance-$(count.index)"
     machine_type = "e2-micro"
     boot_disk {
       initialize_params{
