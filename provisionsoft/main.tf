@@ -1,4 +1,5 @@
-resource "google_compute_instance" "vm_instance" {
+resource "google_compute_instance" "vm_instance" 
+{
     name = "${var.vmname}"
     machine_type = "e2-micro"
        
@@ -12,10 +13,12 @@ resource "google_compute_instance" "vm_instance" {
     }
     metadata_startup_script ="apt-get update && apt-get install nginx"
         
-    network_interface {
+    network_interface 
+    {
       network= "default"
       access_config {
       nat_ip="${var.securitygp[0]}"
-                  }}
+                  }
+    }
   
 }
