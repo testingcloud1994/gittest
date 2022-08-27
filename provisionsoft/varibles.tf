@@ -17,9 +17,6 @@ variable "securitygp" {
     default=["a","b","c","d","e","f","g","h"]  
 }
 
-variable "keyvalue" {
-    publickey="keyvalue.pub"
-  }
   variable "pathtopublickey" {
     default = "keyvalue.pub"
   }
