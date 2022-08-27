@@ -1,6 +1,7 @@
 variable "myregion" {
     default = "us-west4" 
 }
+variable "vmname" {}
 variable "myzone" {
      default = "us-west4-b"  
 }
