@@ -8,7 +8,7 @@ resource "google_compute_instance" "vm_instance" {
       }
           }
     metadata = {
-      "key" = file("${var.pathtopublickey}")
+      enable-oslogin = "TRUE"
     }
     metadata_startup_script ="apt-get update && apt-get install nginx"
         
@@ -18,5 +18,4 @@ resource "google_compute_instance" "vm_instance" {
       nat_ip="${var.securitygp[0]}"
                   }
     }
-  
 }
