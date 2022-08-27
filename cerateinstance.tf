@@ -11,7 +11,7 @@ resource "google_compute_instance" "vm_instance" {
 network_interface {
     network= "default"
     access_config {
-      name=${var.securitygp.name}
+      name="${var.securitygp.name}"
                     }
 }
   
