@@ -6,7 +6,7 @@ resource "google_compute_instance_template" "events_service_template" {
   tags = []
 
   disk {
-    source_image = "ubuntu-os-cloud/ubuntu-1404-lts"
+    source_image = "ubuntu-os-cloud/ubuntu-2004-lts"
     disk_type = "pd-ssd"
     disk_size_gb = "30"
     auto_delete = true
