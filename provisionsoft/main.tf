@@ -2,10 +2,13 @@ resource "google_compute_instance" "vm_instance" {
     name = "${var.vmname}"
     machine_type = "e2-micro"
        
+    attached_disk {
+      source=google_compute_disk.testme0diskcerate.id
+    }
     boot_disk {
       initialize_params{
-        # image= "ubuntu-os-cloud/ubuntu-2004-lts"
-      source= google_compute_disk.testme0diskcerate.testme-diskcerate
+      size = 150
+      image= "ubuntu-os-cloud/ubuntu-2004-lts"
       }
     }
     network_interface {
