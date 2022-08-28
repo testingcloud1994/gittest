@@ -12,9 +12,9 @@ resource "google_compute_instance_template" "events_service_template" {
     auto_delete = true
     boot = true
   }
- metadata {
-    ssh-keys = "root:${file("${var.pathtopublickey}")}"
-  }
+ #metadata {
+  #  ssh-keys = "root:${file("${var.pathtopublickey}")}"
+  #}
   network_interface {
     network = "default"
   }
