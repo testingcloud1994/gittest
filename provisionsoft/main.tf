@@ -1,4 +1,4 @@
-/*resource "google_compute_instance" "vm_instance" {
+resource "google_compute_instance" "vm_instance" {
     name = "${var.vmname}"
     machine_type = "e2-micro"
        
@@ -21,4 +21,9 @@ output "instance" {
   value = google_compute_instance.vm_instance.name
   sensitive = false
 }
-*/
+
+resource "google_compute_attached_disk" "testmeinstanceattachdisk" {
+  instance = google_compute_instance.vm_instance.id
+  disk = google_compute_disk.testme0diskcerate.id
+  
+}
