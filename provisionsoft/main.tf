@@ -37,19 +37,19 @@ resource "google_compute_instance_template" "events_service_template" {
     }
   }*/
 
- /* provisioner "remote-exec" {
+ /*provisioner "remote-exec" {
     connection {
       type = "ssh"
       user = "root"
     #  private_key = "${file("${var.private_key_path}")}"
       agent = false
-    }*/
+    }
 
     inline = [
       "chmod +x /root/startup.sh",
       "/root/startup.sh"
     ]
-  }
+  }*/
 }
 
 
