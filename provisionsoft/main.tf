@@ -23,7 +23,7 @@ resource "google_compute_instance" "vm_instance" {
 
 
 output "instance" {
-  value = google_compute_instance.vm_instance.name
+  value = google_compute_subnetwork.testme-subnet.name
   sensitive = false
 }
 
