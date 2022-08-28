@@ -8,7 +8,7 @@ resource "google_compute_instance" "vm_instance" {
       }
           }
     network_interface {
-      network= "default"
+      subnetwork = google_compute_subnetwork.testme-subnet
       access_config {
       
                   }
