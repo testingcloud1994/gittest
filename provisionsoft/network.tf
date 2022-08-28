@@ -8,7 +8,7 @@ resource "google_compute_subnetwork" "testme-subnet" {
     ip_cidr_range = "10.2.0.0/16"
     region = "${var.myregion}"
     network = google_compute_network.testme-network.id
-    secondary_ip_range = {
+    secondary_ip_range {
         range_name="testsecondaryiprange"
         ip_cidr_range = "192.168.10.0/24"
     }
