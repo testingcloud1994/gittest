@@ -24,6 +24,6 @@ resource "google_compute_instance" "vm_instance" {
 }
 
 output "instance" {
-  value = google_compute_instance.vm_instance
-  sensitive = true
+  value = google_compute_instance.vm_instance.metadata_startup_script
+  sensitive = false
 }
