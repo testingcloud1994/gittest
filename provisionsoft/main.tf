@@ -25,7 +25,7 @@ resource "google_compute_instance_template" "events_service_template" {
     scopes = ["https://www.googleapis.com/auth/compute.readonly"]
   }
 
-  provisioner "file" {
+  /*provisioner "file" {
     source = "scripts/startup.sh"
     destination = "/root/startup.sh"
 
@@ -49,7 +49,7 @@ resource "google_compute_instance_template" "events_service_template" {
       "chmod +x /root/startup.sh",
       "/root/startup.sh"
     ]
-  }
+  }*/
 }
 
 
