@@ -7,8 +7,7 @@ resource "google_compute_instance" "vm_instance" {
         image= "ubuntu-os-cloud/ubuntu-2004-lts"
       }
           }
-    metadata {
-        startup-script = <<SCRIPT
+    metadata_startup_script {<<SCRIPT
         apt-get -y update
         apt-get -y install nginx
         export HOSTNAME=$(hostname | tr -d '\n')
@@ -16,7 +15,8 @@ resource "google_compute_instance" "vm_instance" {
         echo "Welcome to $HOSTNAME - $PRIVATE_IP" > /usr/share/nginx/www/index.html
         service nginx start
         SCRIPT
-    }
+        }
+    metadata_startup_script ="apache.sh "
         
     network_interface {
       network= "default"
