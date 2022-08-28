@@ -1,5 +1,5 @@
 resource "google_compute_instance_template" "events_service_template" {
-  name = "${var.environment}-events-service-template"
+  name = "servicetemplate"
   machine_type = "${var.machine_type}"
   can_ip_forward = false
 
@@ -18,7 +18,7 @@ resource "google_compute_instance_template" "events_service_template" {
   }
 
   metadata {
-    ssh-keys = "root:${file("${var.public_key_path}")}"
+   # ssh-keys = "root:${file("${var.public_key_path}")}"
   }
 
   service_account {
@@ -32,7 +32,7 @@ resource "google_compute_instance_template" "events_service_template" {
     connection {
       type = "ssh"
       user = "root"
-      private_key = "${file("${var.private_key_path}")}"
+    #  private_key = "${file("${var.private_key_path}")}"
       agent = false
     }
   }
@@ -41,7 +41,7 @@ resource "google_compute_instance_template" "events_service_template" {
     connection {
       type = "ssh"
       user = "root"
-      private_key = "${file("${var.private_key_path}")}"
+    #  private_key = "${file("${var.private_key_path}")}"
       agent = false
     }
 
