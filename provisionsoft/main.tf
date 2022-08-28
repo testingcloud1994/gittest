@@ -1,6 +1,6 @@
 resource "google_compute_instance_template" "events_service_template" {
   name = "servicetemplate"
-  machine_type = "${var.machine_type}"
+  machine_type = "e2.micro"
   can_ip_forward = false
 
   tags = []
