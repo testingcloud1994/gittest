@@ -1,4 +1,4 @@
-/*resource "google_compute_instance" "vm_instance" {
+resource "google_compute_instance" "vm_instance" {
     name = "${var.vmname}"
     machine_type = "e2-micro"
        
@@ -20,4 +20,4 @@
 output "instance" {
   value = google_compute_instance.vm_instance.name
   sensitive = false
-}*/
+}
