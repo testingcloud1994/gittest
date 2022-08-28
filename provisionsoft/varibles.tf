@@ -12,9 +12,12 @@ variable "vmname" {
 variable "myzone" {
      default = "us-west4-b"  
 }
-variable "securitygp" {
-    type = list
-    default=["a","b","c","d","e","f","g","h"]  
+
+variable "machine_type" {
+    default = "e2.micro"
+}
+variable "environment" {
+     default = "UAT"
 }
 
   variable "pathtopublickey" {

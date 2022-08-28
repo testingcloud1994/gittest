@@ -1,6 +1,6 @@
 resource "google_compute_instance_template" "events_service_template" {
-  name = "servicetemplate"
-  machine_type = "e2.micro"
+  name = "${var.environment}-events-service-template"
+  machine_type = "${var.machine_type}"
   can_ip_forward = false
 
   tags = []
@@ -17,31 +17,31 @@ resource "google_compute_instance_template" "events_service_template" {
     network = "default"
   }
 
-  #metadata {
-   # ssh-keys = "root:${file("${var.public_key_path}")}"
-  #}
+  metadata {
+    ssh-keys = "root:${file("${var.pathtopublickey}")}"
+  }
 
   service_account {
     scopes = ["https://www.googleapis.com/auth/compute.readonly"]
   }
 
-  /*provisioner "file" {
+  provisioner "file" {
     source = "scripts/startup.sh"
     destination = "/root/startup.sh"
 
     connection {
       type = "ssh"
       user = "root"
-    #  private_key = "${file("${var.private_key_path}")}"
+      private_key = "${file("${var.pathtoprivatekey}")}"
       agent = false
     }
-  }*/
+  }
 
- /*provisioner "remote-exec" {
+  provisioner "remote-exec" {
     connection {
       type = "ssh"
       user = "root"
-    #  private_key = "${file("${var.private_key_path}")}"
+      private_key = "${file("${var.pathtoprivatekey}")}"
       agent = false
     }
 
@@ -49,7 +49,7 @@ resource "google_compute_instance_template" "events_service_template" {
       "chmod +x /root/startup.sh",
       "/root/startup.sh"
     ]
-  }*/
+  }
 }
 
 
