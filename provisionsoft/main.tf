@@ -1,6 +1,4 @@
-provider "google" {
-  project     = "${var.var_project}"
-}
+
 module "vpc" {
   source = "../modules/global" 
   env                   = "${var.var_env}"
