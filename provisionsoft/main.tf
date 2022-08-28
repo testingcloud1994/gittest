@@ -3,7 +3,7 @@ resource "google_compute_instance_template" "events_service_template" {
   machine_type = "${var.machine_type}"
   can_ip_forward = false
 
-  tags = []
+  tags = ["uat"]
 
   disk {
     source_image = "ubuntu-os-cloud/ubuntu-2004-lts"
