@@ -1,5 +1,4 @@
 resource "google_compute_network" "testme-network" {
-project = "testme"
 name = "testme-network"
 auto_create_subnetworks = false
 }
