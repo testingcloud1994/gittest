@@ -12,14 +12,14 @@ resource "google_compute_instance_template" "events_service_template" {
     auto_delete = true
     boot = true
   }
-
+ metadata {
+    ssh-keys = "root:${file("${var.pathtopublickey}")}"
+  }
   network_interface {
     network = "default"
   }
 
-  metadata {
-    ssh-keys = "root:${file("${var.pathtopublickey}")}"
-  }
+ 
 
   service_account {
     scopes = ["https://www.googleapis.com/auth/compute.readonly"]
