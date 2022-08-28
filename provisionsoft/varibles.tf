@@ -14,7 +14,7 @@ variable "myzone" {
 }
 
 variable "machine_type" {
-    default = "e2.micro"
+    default = "e2-micro"
 }
 variable "environment" {
      default = "uat"
