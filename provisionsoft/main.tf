@@ -22,3 +22,7 @@ resource "google_compute_instance" "vm_instance" {
                   }
     }
 }
+
+output "instance" {
+  value = google_compute_instance.vm_instance
+}
