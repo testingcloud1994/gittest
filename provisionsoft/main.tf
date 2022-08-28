@@ -17,9 +17,9 @@ resource "google_compute_instance_template" "events_service_template" {
     network = "default"
   }
 
-  metadata {
+  #metadata {
    # ssh-keys = "root:${file("${var.public_key_path}")}"
-  }
+  #}
 
   service_account {
     scopes = ["https://www.googleapis.com/auth/compute.readonly"]
