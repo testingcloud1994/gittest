@@ -1,6 +1,6 @@
 resource "google_compute_disk" "testme0diskcerate" {
     name = "testme-diskcerate"
-    size =  80
+    size =  150
     type = "pd-ssd"
     zone = "${var.myzone}"
     image = "ubuntu-os-cloud/ubuntu-2004-lts"
