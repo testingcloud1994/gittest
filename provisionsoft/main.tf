@@ -7,7 +7,7 @@ resource "google_compute_instance" "vm_instance" {
     }
     boot_disk {
       initialize_params{
-      size = 150
+      ize = 150
       image= "ubuntu-os-cloud/ubuntu-2004-lts"
       }
     }
@@ -26,3 +26,8 @@ output "instance" {
   sensitive = false
 }
 
+/*resource "google_compute_attached_disk" "testmeinstanceattachdisk" {
+  instance = google_compute_instance.vm_instance.id
+  disk = google_compute_disk.testme0diskcerate.id
+  
+}*/
