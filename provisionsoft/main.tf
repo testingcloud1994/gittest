@@ -8,12 +8,14 @@ resource "google_compute_instance" "vm_instance" {
       }
           }
     network_interface {
-      subnetwork = google_compute_subnetwork.testme-subnet
+      subnetwork = google_compute_subnetwork.testme-subnet.name
       access_config {
       
                   }
     }
 }
+
+
 
 output "instance" {
   value = google_compute_instance.vm_instance.name
