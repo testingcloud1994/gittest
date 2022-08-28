@@ -17,7 +17,7 @@ variable "machine_type" {
     default = "e2.micro"
 }
 variable "environment" {
-     default = "UAT"
+     default = "uat"
 }
 
   variable "pathtopublickey" {
