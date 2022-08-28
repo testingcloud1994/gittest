@@ -26,6 +26,10 @@ output "instance" {
   value = google_compute_subnetwork.testme-subnet.name
   sensitive = false
 }
+output "instance" {
+  value = google_compute_disk.testme0diskcerate
+  sensitive = false
+}
 
 /*resource "google_compute_attached_disk" "testmeinstanceattachdisk" {
   instance = google_compute_instance.vm_instance.id
