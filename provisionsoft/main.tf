@@ -1,5 +1,5 @@
 resource "google_compute_instance_template" "events_service_template" {
-  name = "${var.environment}-events-service-template"
+  name = "${var.environment}"
   machine_type = "${var.machine_type}"
   can_ip_forward = false
 
