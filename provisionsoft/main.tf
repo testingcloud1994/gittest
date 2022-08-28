@@ -26,8 +26,3 @@ output "instance" {
   sensitive = false
 }
 
-resource "google_compute_attached_disk" "testmeinstanceattachdisk" {
-  instance = google_compute_instance.vm_instance.id
-  disk = google_compute_disk.testme0diskcerate.id
-  
-}
