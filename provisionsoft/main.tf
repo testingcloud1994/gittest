@@ -1,77 +1,38 @@
-resource "google_compute_instance_template" "events_service_template" {
-  name = "${var.environment}"
-  machine_type = "${var.machine_type}"
-  can_ip_forward = false
-
-  tags = ["uat"]
-
-  disk {
-    source_image = "ubuntu-os-cloud/ubuntu-2004-lts"
-    disk_type = "pd-ssd"
-    disk_size_gb = "30"
-    auto_delete = true
-    boot = true
-  }
- #metadata {
-  #  ssh-keys = "root:${file("${var.pathtopublickey}")}"
-  #}
-  network_interface {
-    network = "default"
-  }
-
- 
-
-  service_account {
-    scopes = ["https://www.googleapis.com/auth/compute.readonly"]
-  }
-
-  /*provisioner "file" {
-    source = "scripts/startup.sh"
-    destination = "/root/startup.sh"
-
-    connection {
-      type = "ssh"
-      user = "root"
-      private_key = "${file("${var.pathtoprivatekey}")}"
-      agent = false
-    }
-  }
-
-  provisioner "remote-exec" {
-    connection {
-      type = "ssh"
-      user = "root"
-      private_key = "${file("${var.pathtoprivatekey}")}"
-      agent = false
-    }
-
-    inline = [
-      "chmod +x /root/startup.sh",
-      "/root/startup.sh"
-    ]
-  }*/
+provider "google" {
+  project     = "${var.var_project}"
 }
-
-
-
-/*resource "google_compute_instance" "vm_instance" {
-    name = "${var.vmname}"
-    machine_type = "e2-micro"
-       
-    boot_disk {
-      initialize_params{
-        image= "ubuntu-os-cloud/ubuntu-2004-lts"
-      }
-          }
-    metadata = {
-      enable-oslogin = "TRUE"
-    }
-    metadata_startup_script ="apache.sh "
-        
-    network_interface {
-      network= "default"
-      access_config {
-      
-                  }
-    }
-}*/
+module "vpc" {
+  source = "../modules/global" 
+  env                   = "${var.var_env}"
+  company               = "${var.var_company}"
+  var_uc1_public_subnet = "${var.uc1_public_subnet}"
+  var_uc1_private_subnet= "${var.uc1_private_subnet}"
+  var_ue1_public_subnet = "${var.ue1_public_subnet}"
+  var_ue1_private_subnet= "${var.ue1_private_subnet}"
+}
+module "uc1" {
+  source                = "../modules/uc1"
+  network_self_link     = "${module.vpc.out_vpc_self_link}"
+  subnetwork1           = "${module.uc1.uc1_out_public_subnet_name}"
+  env                   = "${var.var_env}"
+  company               = "${var.var_company}"
+  var_uc1_public_subnet = "${var.uc1_public_subnet}"
+  var_uc1_private_subnet= "${var.uc1_private_subnet}"
+}
+module "ue1" {
+  source                = "../modules/ue1"
+  network_self_link     = "${module.vpc.out_vpc_self_link}"
+  subnetwork1           = "${module.ue1.ue1_out_public_subnet_name}"
+  env                   = "${var.var_env}"
+  company               = "${var.var_company}"
+  var_ue1_public_subnet = "${var.ue1_public_subnet}"
+  var_ue1_private_subnet= "${var.ue1_private_subnet}"
+}
+######################################################################
+# Display Output Public Instance
+######################################################################
+output "uc1_public_address"  { value = "${module.uc1.uc1_pub_address}"}
+output "uc1_private_address" { value = "${module.uc1.uc1_pri_address}"}
+output "ue1_public_address"  { value = "${module.ue1.ue1_pub_address}"}
+output "ue1_private_address" { value = "${module.ue1.ue1_pri_address}"}
+output "vpc_self_link" { value = "${module.vpc.out_vpc_self_link}"}
