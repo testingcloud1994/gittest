@@ -2,7 +2,6 @@
 resource "google_compute_instance_group_manager" "webserver" {
   name = "webserver"
   description = "this is my webserver test"
-
   base_instance_name = "webservertest"
   zone= "${var.myzone}"
   version {
