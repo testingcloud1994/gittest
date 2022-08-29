@@ -1,34 +1,38 @@
 
-resource "google_compute_instance_group" "webserver" {
+resource "google_compute_instance_group_manager" "webserver" {
   name = "webserver"
   description = "this is my webserver test"
-  instances = [ google_compute_instance.vm_instance.id ]
+  version {
+    instance_template=google_compute_instance_template.vm_instance.id
+  }
+
+  target_pools = [google_compute_target_pool.webpool.id]
+  target_size  = 2
   named_port {
     name= "http"
     port= "80"
   }
   zone= "${var.myzone}"
-lifecycle {
-  create_before_destroy=true
+
+  auto_healing_policies {
+    health_check      = google_compute_http_health_check.httphealth.id
+    initial_delay_sec = 300
+  }
 }
-}
 
 
 
-resource "google_compute_instance" "vm_instance" {
+resource "google_compute_instance_template" "vm_instance" {
     name = "${var.vmname}"
     machine_type = "e2-micro"
-       
-   /* attached_disk {
-      source=google_compute_disk.testme0diskcerate.id
-    }*/
-    boot_disk {
+    disk {
+    source      = "ubuntu-os-cloud/ubuntu-2004-lts"
+    auto_delete = false
+    boot        = false
+       }
+    /*boot_disk {
       source = google_compute_disk.testme0diskcerate.id
-      /*initialize_params{
-      size = 150
-      image= "ubuntu-os-cloud/ubuntu-2004-lts"
-      }*/
-    }
+    }*/
     network_interface {
       subnetwork = google_compute_subnetwork.testme-subnet.name
       access_config {

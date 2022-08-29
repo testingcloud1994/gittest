@@ -1,7 +1,7 @@
-/*resource "google_compute_autoscaler" "testmeautoscaler" {
+resource "google_compute_autoscaler" "testmeautoscaler" {
      name = "testmeautoscaler"
      zone = "${var.myzone}"
-     target = google_compute_instance_group.webserver.id
+     target = google_compute_instance_group_manager.webserver
      autoscaling_policy {
        max_replicas=5
        min_replicas=1
@@ -10,7 +10,7 @@
            target= 0.5
        }
      }
-}*/
+}
 
 resource "google_compute_http_health_check" "httphealth" {
     name = "healthcheck"
@@ -30,4 +30,10 @@ resource "google_compute_backend_service" "bacckend_edd" {
     }
     health_checks = [google_compute_http_health_check.httphealth.id]
     
+}
+
+resource "google_compute_target_pool" "webpool" {
+    name = "webpool"
+    health_checks = [ google_compute_http_health_check.httphealth.id ]
+  
 }
