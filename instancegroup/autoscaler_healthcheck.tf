@@ -1,6 +1,9 @@
 resource "google_compute_autoscaler" "testmeautoscaler" {
      name = "testmeautoscaler"
      zone = "${var.myzone}"
+     depends_on = [
+       google_compute_instance_group.webserver
+     ]
      target = google_compute_instance_group.webserver.id
      autoscaling_policy {
        max_replicas=5
