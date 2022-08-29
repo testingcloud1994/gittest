@@ -25,7 +25,7 @@ resource "google_compute_backend_service" "bacckend_edd" {
 
     name = "testme-service"
     port_name="http"
-    protocol = "http"
+    protocol = "HTTP"
     backend {
       group= google_compute_instance_group.webserver.id
     }
