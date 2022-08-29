@@ -32,7 +32,7 @@ resource "google_compute_instance_template" "vm_instance" {
     auto_delete = false
     boot        = false
        }
-
+metadata = {
 gce-software-declaration = <<-EOF
     {
       "softwareRecipes": [{
@@ -46,6 +46,9 @@ gce-software-declaration = <<-EOF
       }]
     }
     EOF
+    enable-guest-attributes = "true"
+    enable-osconfig         = "true"
+}
 
     /*boot_disk {
       source = google_compute_disk.testme0diskcerate.id
