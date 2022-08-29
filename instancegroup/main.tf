@@ -3,7 +3,6 @@ resource "google_compute_instance_group" "webserver" {
   name = "webserver"
   description = "this is my webserver test"
   instances = [ google_compute_instance.vm_instance.id ]
-  health_check=[ google_compute_http_health_check.httphealth.id ]
   named_port {
     name= "http"
     port= "80"
