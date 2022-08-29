@@ -1,7 +1,7 @@
 resource "google_compute_autoscaler" "testmeautoscaler" {
      name = "testmeautoscaler"
      zone = "${var.myzone}"
-     target = google_compute_instance_group_manager.webserver
+     target = google_compute_instance_group_manager.webserver.id
      autoscaling_policy {
        max_replicas=5
        min_replicas=1
@@ -26,7 +26,7 @@ resource "google_compute_backend_service" "bacckend_edd" {
     port_name="http"
     protocol = "HTTP"
     backend {
-      group= google_compute_instance_group_manager.webserver
+      group= google_compute_instance_group_manager.webserver.id
     }
     health_checks = [google_compute_http_health_check.httphealth.id]
     
