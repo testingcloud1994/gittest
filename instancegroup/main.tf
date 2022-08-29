@@ -2,6 +2,9 @@
 resource "google_compute_instance_group_manager" "webserver" {
   name = "webserver"
   description = "this is my webserver test"
+
+  base_instance_name = "webservertest"
+  zone= "${var.myzone}"
   version {
     instance_template=google_compute_instance_template.vm_instance.id
   }
@@ -12,7 +15,7 @@ resource "google_compute_instance_group_manager" "webserver" {
     name= "http"
     port= "80"
   }
-  zone= "${var.myzone}"
+  
 
   auto_healing_policies {
     health_check      = google_compute_http_health_check.httphealth.id

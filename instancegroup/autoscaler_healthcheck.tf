@@ -26,7 +26,7 @@ resource "google_compute_backend_service" "bacckend_edd" {
     port_name="http"
     protocol = "HTTP"
     backend {
-      group= google_compute_instance_group.webserver.id
+      group= google_compute_instance_group_manager.webserver
     }
     health_checks = [google_compute_http_health_check.httphealth.id]
     
