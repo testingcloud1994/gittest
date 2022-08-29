@@ -28,7 +28,7 @@ resource "google_compute_instance_template" "vm_instance" {
     name = "${var.vmname}"
     machine_type = "e2-micro"
     disk {
-    source      = "ubuntu-os-cloud/ubuntu-2004-lts"
+    source_image= "ubuntu-os-cloud/ubuntu-2004-lts"
     auto_delete = false
     boot        = false
        }
