@@ -24,7 +24,7 @@ resource "google_compute_http_health_check" "httphealth" {
 resource "google_compute_backend_service" "bacckend_edd" {
 
     name = "testme-service"
-    named_port="http"
+    port_name="http"
     protocol = "http"
     backend {
       group= google_compute_instance_group.webserver.id
