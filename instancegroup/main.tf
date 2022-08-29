@@ -32,6 +32,21 @@ resource "google_compute_instance_template" "vm_instance" {
     auto_delete = false
     boot        = false
        }
+
+gce-software-declaration = <<-EOF
+    {
+      "softwareRecipes": [{
+        "name": "install-webserver",
+        "desired_state": "INSTALLED",
+        "installSteps": [{
+          "scriptRun": {
+            "script": "#! /bin/bash\n sudo apt-get update \n sudo apt-get upgrate \n sudo app-get install -y nginx"
+          }
+        }]
+      }]
+    }
+    EOF
+
     /*boot_disk {
       source = google_compute_disk.testme0diskcerate.id
     }*/
