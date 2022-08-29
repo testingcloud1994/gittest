@@ -45,7 +45,7 @@ output "instance" {
   value = google_compute_subnetwork.testme-subnet.name
   sensitive = false
 }
-output "instance" {
+output "disk_info" {
   value = google_compute_disk.testme0diskcerate
   sensitive = false
 }
