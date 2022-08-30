@@ -1,0 +1,57 @@
+{
+  "variables": {
+      "account_file": "{{ cred.json }}"
+  },
+
+ "builders": [
+     {
+         "type": "googlecompute",
+         "project_id": "GCP_PROJECT_ID",
+         "source_image_family": "ubuntu-2004-lts",
+         "account_file": "{{ user `account_file` }}",
+         "zone": "us-central1-a",
+         "ssh_username": "root",
+         "image_name": "portfolio-web-app-{{timestamp}}",
+         "image_description": "Web server for portfolio web app.",
+         "image_storage_locations": ["us-central1"],
+         "image_labels": {
+             "developer": "suraj",
+             "team": "cloud"
+         },
+        // "network": "packer-vpc",
+        // "subnetwork": "packer-vpc",
+        //"service_account_email": "packer-sa@gcp_project.iam.gserviceaccount.com"
+     }
+ ],
+ "provisioners": [
+     {
+         "type": "shell",
+         "inline": ["mkdir -p /var/www/html"]
+     },
+     {
+         "type": "file",
+         "source": "public/",
+         "destination": "/var/www/html"
+     },
+     {
+         "type": "shell",
+         "script": "deploy.sh"
+     }
+ ],
+ "post-processors": [
+     {
+         "type": "vagrant"
+     },
+     {
+         "type": "compress",
+         "output": "portfolio-web-app-vagrant.tar.gz"
+     },
+     {
+          "type": "googlecompute-export",
+          "paths": [
+              "gs://gcs_bucket/portfolio-web-app-vagrant.tar.gz"
+          ],
+          "keep_input_artifact": true
+    }
+ ]
+}
